@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>AI-Powered Skin Disease Detection for Cows & Dogs</h1>
+            <p>Instant results. Smarter care for animals.</p>
+            <div class="cta-buttons">
+                <button class="cta-button primary" onclick="selectAnimal('cow')">Detect Cow Disease</button>
+                <button class="cta-button secondary" onclick="selectAnimal('dog')">Detect Dog Disease</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Section -->
+    <div class="upload-section" id="upload-section">
+        <div class="container">
+            <h2>Disease Detection</h2>
+            <form id="upload-form">
+                <select id="animal-type" required>
+                    <option value="">Select Animal Type</option>
+                    <option value="cow">Cow</option>
+                    <option value="dog">Dog</option>
+                </select>
+                <div class="file-upload">
+                    <input type="file" id="image-upload" accept="image/*" required>
+                    <label for="image-upload">Choose File</label>
+                </div>
+                <button type="submit" class="submit-button">Detect Disease</button>
+            </form>
+            <div id="result" class="hidden result-card">
+                <h2>Result:</h2>
+                <p id="prediction"></p>
+                <p id="confidence"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step" data-aos="fade-right">
+                <div class="step-icon">📤</div>
+                <h3>Upload an Image</h3>
+                <p>Select and upload a clear image of the affected area</p>
+            </div>
+            <div class="step" data-aos="fade-up">
+                <div class="step-icon">🧠</div>
+                <h3>AI Analyzes</h3>
+                <p>Our AI model analyzes the image for disease patterns</p>
+            </div>
+            <div class="step" data-aos="fade-left">
+                <div class="step-icon">📋</div>
+                <h3>Get Results</h3>
+                <p>Receive instant diagnosis and confidence score</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <div class="stat-item">
+            <h3>Cows Diagnosed</h3>
+            <span id="cowCount">0</span>
+        </div>
+        <div class="stat-item">
+            <h3>Dogs Diagnosed</h3>
+            <span id="dogCount">0</span>
+        </div>
+        <div class="stat-item">
+            <h3>Accuracy Rate</h3>
+            <span id="accuracyCount">0</span>%
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
